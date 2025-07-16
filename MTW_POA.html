@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;NHS Cataract Pathway Optimisation: A Data-Driven Proposal&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f8f9fa;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 300px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 350px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kpi-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kpi-card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kpi-value {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #12156F;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kpi-label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #6D7C93;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-gray-100 text-gray-800"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="content-to-print"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="bg-[#12156F] text-white p-6 md:p-10 text-center shadow-lg relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="absolute top-4 right-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="download-pdf" class="bg-[#4D65FF] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-300 disabled:bg-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Download PDF</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-3xl md:text-5xl font-extrabold mb-2"&gt;Optimising the Cataract Referral Pathway&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg md:text-xl font-light max-w-4xl mx-auto"&gt;A Data-Driven Proposal to Release Clinical Capacity by Maximising Pre-Assessment Efficiency&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;main class="container mx-auto p-4 md:p-8"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="diagnosis" class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-lg shadow-md p-6 md:p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl font-bold text-[#12156F] mb-4 text-center"&gt;The Challenge: A Hidden Inefficiency&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-lg text-center max-w-3xl mx-auto mb-8 text-[#6D7C93]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>An analysis of 1,014 cataract referrals reveals a critical opportunity. The core issue isn't appointment non-attendance, but rather a significant portion of patients arriving without having completed their pre-assessment. This forces clinicians to spend valuable time on data gathering instead of high-value clinical decision-making.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="chart-container mx-auto" style="height: 350px; max-height: 450px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;canvas id="referralOutcomesChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-center md:text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-[#FFFBEB] border-l-4 border-amber-500 p-6 rounded-lg shadow-inner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-5xl md:text-7xl font-extrabold text-amber-600"&gt;33%&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-xl md:text-2xl font-semibold text-amber-800 mt-2"&gt;Of Patients Arrive Without Pre-Assessment Data&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="mt-4 text-[#6D7C93]"&gt;This represents 1,011 patients annually who miss out on the 12-15 minute time-saving benefit per appointment, creating a major opportunity cost and reducing overall clinic efficiency.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="solution" class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;h2 class="text-3xl font-bold text-[#12156F] mb-6 text-center"&gt;The Solution: A 3-Point Strategy for Full Efficiency&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="kpi-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-5xl font-bold text-[#4D65FF]"&gt;1&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold mt-4 mb-2 text-[#12156F]"&gt;Triage 'Unsure' Patients&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-[#6D7C93]"&gt;Divert the 4% of patients who are unsure about surgery from consultant clinics to dedicated nurse-led calls, saving specialist time for those ready to proceed.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="kpi-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-5xl font-bold text-[#4D65FF]"&gt;2&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold mt-4 mb-2 text-[#12156F]"&gt;Capitalise on Existing Success&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-[#6D7C93]"&gt;Continue providing comprehensive pre-assessment reports for the 67% of patients who complete the process, securing the significant time-saving benefits already being realised.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="kpi-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-5xl font-bold text-[#4D65FF]"&gt;3&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold mt-4 mb-2 text-[#12156F]"&gt;Close the Information Gap&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-[#6D7C93]"&gt;Implement a robust contact strategy to engage the 33% of patients who currently miss pre-assessment, unlocking the final, major piece of the efficiency puzzle.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="impact" class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold text-[#12156F] mb-6 text-center"&gt;Projected Annual Impact: Quantifiable Gains&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 lg:grid-cols-3 gap-8"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>&lt;h3 class="text-2xl font-bold text-[#4D65FF] mb-4"&gt;Patient Preparedness&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>&lt;p class="text-base mb-4 text-[#6D7C93]"&gt;By improving the pre-assessment contact rate to 95%, we can ensure almost every patient arrives at their appointment fully prepared for a productive consultation.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="kpi-value"&gt;960&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="kpi-label"&gt;Additional Patients Assessed Pre-Clinic Annually&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-2xl font-bold text-[#4D65FF] mb-4"&gt;Total Capacity Release&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-base mb-4 text-[#6D7C93]"&gt;Combining savings from all initiatives unlocks a substantial amount of clinical time that can be reinvested into direct patient care.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="kpi-value"&gt;600-734&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="kpi-label"&gt;Hours of Clinical Time Released Annually&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>&lt;h3 class="text-2xl font-bold text-[#4D65FF] mb-4"&gt;Workforce Efficiency&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>&lt;p class="text-base mb-4 text-[#6D7C93]"&gt;This released capacity is equivalent to adding a significant portion of a full-time clinician back into the system, without any new hires.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="kpi-value"&gt;0.42 FTE&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="kpi-label"&gt;Max Equivalent Annual Workforce Capacity Unlocked&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="deep-dive" class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold text-[#12156F] mb-6 text-center"&gt;A Deeper Look at the Savings&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="grid grid-cols-1 md:grid-cols-1 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold mb-4 text-[#4D65FF] text-center"&gt;Unlocking Total Potential: Sources of Time Savings&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-4 text-center max-w-3xl mx-auto text-[#6D7C93]"&gt;The total annual time saving is a combination of three key initiatives. While the current process already saves a significant amount of time, the largest single opportunity for improvement comes from successfully engaging the cohort of patients who currently miss their pre-assessment calls.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="chart-container mx-auto" style="height: 400px; max-height: 450px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;canvas id="timeSavingsChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;footer class="bg-[#12156F] text-white p-6 mt-12 rounded-lg shadow-lg text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold mb-2"&gt;Recommendations&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="max-w-3xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>We recommend immediate actions to enhance patient awareness of the pre-operative assessment calls to reduce the "Pre-assessment Incomplete" cohort. The goal is to achieve a 95% contact rate to unlock significant clinical capacity, creating a more efficient and streamlined cataract service.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('download-pdf').addEventListener('click', function () {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const element = document.getElementById('content-to-print');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const button = this;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const originalWidth = element.style.width;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Set a fixed width for consistent rendering and provide user feedback</p>
+<p class="p1"><span class="Apple-converted-space">            </span>element.style.width = '820px';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>button.textContent = 'Generating...';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>button.disabled = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const opt = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>margin: <span class="Apple-converted-space">      </span>0.3,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>filename: <span class="Apple-converted-space">    </span>'NHS-Cataract-Pathway-Optimisation.pdf',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>image:<span class="Apple-converted-space">        </span>{ type: 'jpeg', quality: 0.98 },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>html2canvas:<span class="Apple-converted-space">  </span>{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scale: 3,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>useCORS: true,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>logging: false,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>letterRendering: true,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>width: 820</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>jsPDF:<span class="Apple-converted-space">        </span>{ unit: 'in', format: 'a4', orientation: 'portrait' }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Use a promise chain to handle cleanup after PDF generation</p>
+<p class="p1"><span class="Apple-converted-space">            </span>html2pdf().from(element).set(opt).save()</p>
+<p class="p1"><span class="Apple-converted-space">                </span>.then(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>element.style.width = originalWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.textContent = 'Download PDF';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>})</p>
+<p class="p1"><span class="Apple-converted-space">                </span>.catch((error) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error('PDF generation failed:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Ensure cleanup happens even on error</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>element.style.width = originalWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.textContent = 'Download PDF';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ufoniaPalette = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>primary: '#12156F',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>highlight: '#4D65FF',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text: '#6D7C93',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>secondary: '#F5DDCE',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>accentOrange: '#ED8936',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>amber: '#FBBF24',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lightGrey: '#E5E7EB'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function wrapLabels(label, maxWidth) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const words = label.split(' ');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let line = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const lines = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; words.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const testLine = line + words[i] + ' ';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (testLine.length &gt; maxWidth &amp;&amp; i &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lines.push(line.trim());</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>line = words[i] + ' ';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>line = testLine;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lines.push(line.trim());</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return lines;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tooltipTitleCallback = function(tooltipItems) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const item = tooltipItems[0];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let label = item.chart.data.labels[item.dataIndex];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Array.isArray(label)) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>return label.join(' ');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>return label;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const referralData = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>labels: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wrapLabels('Data Gathered (Complex)', 16),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wrapLabels('Data Gathered (Non-Complex)', 16),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wrapLabels('Pre-assessment Incomplete', 16),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wrapLabels('Unsuitable for Assessment Call', 16),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wrapLabels("Patient Unsure/Declined", 16),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wrapLabels('Technical Error', 16)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>label: 'Number of Referrals (Mar-Jun 2025)',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data: [410, 163, 337, 59, 43, 2],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>backgroundColor: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ufoniaPalette.primary,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ufoniaPalette.highlight,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ufoniaPalette.accentOrange,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ufoniaPalette.text,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ufoniaPalette.amber,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ufoniaPalette.lightGrey</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>borderColor: '#ffffff',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>borderWidth: 2</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const referralOutcomesCtx = document.getElementById('referralOutcomesChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(referralOutcomesCtx, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'doughnut',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: referralData,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>animation: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>duration: 0 // Disable animation for better PDF rendering</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>legend: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>position: 'right',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>labels: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>boxWidth: 20,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>padding: 20,</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>size: 12</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>color: ufoniaPalette.text</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>text: 'Pre-Assessment Outcome Breakdown (Total: 1,014)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>size: 18,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>weight: 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>color: ufoniaPalette.primary,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>padding: { top: 10, bottom: 20 }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>title: tooltipTitleCallback</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cutout: '60%'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const timeSavingsData = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>labels: ['Max Annual Hours Saved'],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>datasets: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Currently Realised Savings',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [429.75],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: ufoniaPalette.highlight,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>stack: 'Stack 0',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: "Untapped Potential (from 'Incomplete' group)",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [240],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: ufoniaPalette.accentOrange,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>stack: 'Stack 0',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: "Savings from 'Unsure' Patient Triage",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [64.5],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: ufoniaPalette.primary,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>stack: 'Stack 0',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const timeSavingsCtx = document.getElementById('timeSavingsChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(timeSavingsCtx, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: timeSavingsData,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>indexAxis: 'y',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>animation: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>duration: 0 // Disable animation for better PDF rendering</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stacked: true,</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>title: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>display: true,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>text: 'Total Annual Hours of Clinical Time Released',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>color: ufoniaPalette.text</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>ticks: { color: ufoniaPalette.text },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>grid: { color: '#e0e0e0' }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stacked: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: false</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>legend: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>position: 'top',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>labels: {</p>
+<p class="p1"><span class="Apple-converted-space">                           </span>color: ufoniaPalette.text</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>text: 'Annual Clinic Hours Released by Initiative',</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>size: 16,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>weight: 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>color: ufoniaPalette.primary</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>title: tooltipTitleCallback</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
